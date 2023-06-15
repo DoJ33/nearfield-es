@@ -23,18 +23,21 @@ systemctl reload sshd
 echo "[TASK 4] Set root password"
 echo root:kubeadmin | chpasswd
 
-# Install snap && microk8s
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install snapd -y
-sudo systemctl start snapd
-Sudo systemctl enable snapd
-sudo snap install core
+# Install snap for debian
+# sudo apt update -y
+# sudo apt upgrade -y
+# sudo apt install snapd -y
+# sudo systemctl start snapd
+# sudo systemctl enable snapd
+# sudo snap install core
 
 ## Install microk8s
+echo "[TASK 5] Install Microk8s and set"
 sudo snap install microk8s --classic
 sudo usermod -a -G microk8s $USER
 sudo chown -f -R $USER ~/.kube
+# newgrp microk8s
 
 alias kubectl='microk8s kubectl'
+alias helm='microk8s helm'
 sudo reboot

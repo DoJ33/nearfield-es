@@ -1,0 +1,13 @@
+# pvc-nfs.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: odoo-pvc
+spec:
+  storageClassName: nfs-csi
+  accessModes: [ReadWriteMany]
+  resources:
+    requests:
+      storage: 15Gi
+~

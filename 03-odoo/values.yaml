@@ -1,0 +1,4 @@
+persistence:
+  existingClaim: pvc-nfs-dynamic
+image:
+  tag: 14.0.20230610-debian-11-r1
