@@ -10,7 +10,7 @@ spec:
       dataVolumeClaimSpec:
         storageClassName: nfs-csi-odoo
         accessModes:
-        - "ReadWriteOnce"
+          - "ReadWriteOnce"
         resources:
           requests:
             storage: 1Gi
@@ -18,12 +18,19 @@ spec:
     pgbackrest:
       image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.45-0
       repos:
-      - name: repo1
-        volume:
-          volumeClaimSpec:
-            storageClassName: nfs-csi-odoo
-            accessModes:
-            - "ReadWriteOnce"
-            resources:
-              requests:
-                storage: 1Gi
+        - name: repo1
+          volume:
+            volumeClaimSpec:
+              storageClassName: nfs-csi-odoo
+              accessModes:
+                - "ReadWriteOnce"
+              resources:
+                requests:
+                  storage: 1Gi
+  users:
+    - name: keycloak
+      databases:
+        - keycloak
+    - name: odoo
+      databases:
+        - odoo

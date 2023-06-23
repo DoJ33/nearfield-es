@@ -2,3 +2,45 @@ persistence:
   existingClaim: pvc-nfs-dynamic
 image:
   tag: 14.0.20230610-debian-11-r1
+postgresql:
+  enabled: false
+
+externalDatabase:
+  host: ""
+  port: 5432
+  user: ""
+  password: ""
+  database: ""
+  create: false
+  postgresqlPostgresUser: ""
+  postgresqlPostgresPassword: ""
+  existingSecret: "hippo-pguser-odoo"
+  existingSecretPasswordKey: "password"
+  existingSecretPostgresPasswordKey: "password"
+
+extraEnv:
+  - name: POSTGRES_HOST
+    valueFrom:
+      secretKeyRef:
+        name: hippo-pguser-odoo
+        key: host
+  - name: POSTGRES_USER
+    valueFrom:
+      secretKeyRef:
+        name: hippo-pguser-odoo
+        key: user
+  - name: POSTGRES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: hippo-pguser-odoo
+        key: password
+  - name: POSTGRES_DB
+    valueFrom:
+      secretKeyRef:
+        name: hippo-pguser-odoo
+        key: dbname
+  - name: POSTGRES_PORT
+    valueFrom:
+      secretKeyRef:
+        name: hippo-pguser-odoo
+        key: port

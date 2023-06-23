@@ -40,4 +40,5 @@ sudo chown -f -R $USER ~/.kube
 
 alias kubectl='microk8s kubectl'
 alias helm='microk8s helm'
+alias ctr='microk8s ctr'
 sudo reboot
